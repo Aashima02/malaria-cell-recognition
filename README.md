@@ -14,7 +14,8 @@ Our dataset comprises 27,558 cell images, evenly split between parasitized and u
 ### Dataset:
 ![193736032-b5847f1f-f002-4edc-912a-eaf48444f1b0](https://github.com/Aashima02/malaria-cell-recognition/assets/93427086/2c515772-eb1e-4103-ae2c-e89240d50f0a)
 
-## Neural Network Model
+## Neural Network Model:
+![image](https://github.com/Aashima02/malaria-cell-recognition/assets/93427086/50778a7c-7b29-4c2b-abc1-85c4151fc60a)
 
 
 ## DESIGN STEPS
@@ -172,6 +173,22 @@ print(classification_report(test_image_gen.classes,predictions))
 confusion_matrix(test_image_gen.classes,predictions)
 ```
 
+### Check for new image:
+```python
+list_dir=["Un Infected","parasitized"]
+dir_=(rnd.choice(list_dir))
+p_img=imread(train_path+'/'+dir_+'/'+os.listdir(train_path+'/'+dir_)[rnd.randint(0,100)])
+img  = tf.convert_to_tensor(np.asarray(p_img))
+img = tf.image.resize(img,(130,130))
+img=img.numpy()
+pred=bool(model.predict(img.reshape(1,130,130,3))<0.5 )
+plt.title("Model prediction: "+("Parasitized" if pred  else "Un Infected")
+			+"\nActual Value: "+str(dir_))
+plt.axis("off")
+plt.imshow(img)
+plt.show()
+```
+
 ## OUTPUT
 
 ### Training Loss, Validation Loss Vs Iteration Plot
@@ -188,11 +205,9 @@ confusion_matrix(test_image_gen.classes,predictions)
 
 ![image](https://github.com/Aashima02/malaria-cell-recognition/assets/93427086/ad118a7b-cb80-448b-abc5-e4a744dc9e08)
 
-
-## RESULT:
-
 ### New Sample Data Prediction
 
-Include your sample cell image input and output of your model.
+![image](https://github.com/Aashima02/malaria-cell-recognition/assets/93427086/5ed5a3cf-c82b-440e-a89c-295eb26d0a6f)
 
-## RESULT
+## RESULT:
+The model's performance is evaluated through training and testing, and it shows potential for assisting healthcare professionals in diagnosing malaria more efficiently and accurately.

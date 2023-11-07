@@ -152,7 +152,7 @@ test_image_gen = image_gen.flow_from_directory(test_path,target_size=image_shape
                               color_mode='rgb',batch_size=batch_size,
                               class_mode='binary',shuffle=False)
 train_image_gen.class_indices
-results = model.fit(train_image_gen,epochs=2,validation_data=test_image_gen)
+results = model.fit(train_image_gen,epochs=10,validation_data=test_image_gen)
 model.save('cell_model.h5')
 ```
 
